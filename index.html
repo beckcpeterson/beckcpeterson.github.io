@@ -74,6 +74,59 @@
         margin: 1rem 0 0; padding: .9rem 1rem; border-left: 3px solid #5e8b71;
         background: #eef2e9; color: #41534a; font-size: .78rem; line-height: 1.6;
       }
+      .document-viewer {
+        margin-top: 1rem; overflow: hidden; border: 1px solid #2c444d;
+        background: #071925; color: #fff;
+      }
+      .document-toolbar {
+        display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        min-height: 68px; padding: .8rem 1rem; border-bottom: 1px solid #38505a;
+      }
+      .document-meta { min-width: 0; }
+      .document-eyebrow {
+        display: block; margin-bottom: .28rem; color: #a9cdb4;
+        font-size: .62rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+      }
+      .document-title {
+        display: block; overflow: hidden; color: #fff; font-size: .88rem;
+        font-weight: 800; line-height: 1.3; text-overflow: ellipsis; white-space: nowrap;
+      }
+      .document-actions { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+      .document-page-count { min-width: 84px; color: #d8e1dd; font-size: .72rem; text-align: center; }
+      .document-button,
+      .document-open {
+        min-height: 38px; border: 1px solid #60727a; background: transparent; color: #fff;
+        font: inherit; font-size: .7rem; font-weight: 800; letter-spacing: .06em;
+      }
+      .document-button { min-width: 42px; padding: .45rem .65rem; cursor: pointer; }
+      .document-button:hover,
+      .document-button:focus-visible,
+      .document-open:hover,
+      .document-open:focus-visible { border-color: #a9cdb4; background: #17333d; outline: none; }
+      .document-button:disabled { cursor: default; opacity: .35; }
+      .document-open { display: inline-flex; align-items: center; padding: .45rem .78rem; text-decoration: none; }
+      .document-instructions {
+        margin: 0; padding: .55rem 1rem; background: #102b34; color: #c7d4d0;
+        font-size: .7rem; line-height: 1.5; text-align: center;
+      }
+      .document-track {
+        display: flex; width: 100%; overflow-x: auto; overflow-y: hidden;
+        scroll-behavior: smooth; scroll-snap-type: x mandatory; overscroll-behavior-inline: contain;
+        scrollbar-color: #8caf96 #142d36; scrollbar-width: thin;
+      }
+      .document-page {
+        position: relative; display: grid; flex: 0 0 100%; min-width: 100%; min-height: 440px;
+        box-sizing: border-box; place-items: center; padding: clamp(1rem, 2.5vw, 2rem);
+        background: #10252d; scroll-snap-align: center; scroll-snap-stop: always;
+      }
+      .document-page::before {
+        position: absolute; top: 1rem; left: 1rem; color: #8fa39c; content: attr(data-label);
+        font-size: .62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+      }
+      .document-page canvas { display: block; max-width: 100%; box-shadow: 0 18px 42px rgba(0,0,0,.35); }
+      .document-page-status { color: #b8c7c2; font-size: .76rem; }
+      .document-error { padding: 3rem 1rem; color: #fff; text-align: center; }
+      .document-error a { color: #b8d7bf; }
       @media (max-width: 900px) {
         .category-heading { grid-template-columns: 60px 1fr; }
         .category-heading p { grid-column: 2; }
@@ -84,6 +137,11 @@
         .category-heading { grid-template-columns: 38px 1fr; }
         .case-card { min-height: auto; }
         .case-body-grid { grid-template-columns: 1fr; }
+        .document-toolbar { align-items: flex-start; flex-direction: column; }
+        .document-actions { width: 100%; flex-wrap: wrap; }
+        .document-page-count { min-width: 68px; }
+        .document-open { margin-left: auto; }
+        .document-page { min-height: 330px; }
       }
     </style>
 
@@ -258,6 +316,20 @@
                     </ul>
                   </div>
                 </div>
+                <div class="document-viewer" data-pdf="Port-of-Los-Angeles-Benchmarking.pdf" data-title="Port of Los Angeles Benchmarking Presentation">
+                  <div class="document-toolbar">
+                    <div class="document-meta"><span class="document-eyebrow">Full presentation</span><span class="document-title">Port of Los Angeles Benchmarking</span></div>
+                    <div class="document-actions">
+                      <button class="document-button document-previous" type="button" aria-label="Previous slide">&#8592;</button>
+                      <span class="document-page-count" aria-live="polite">Loading...</span>
+                      <button class="document-button document-next" type="button" aria-label="Next slide">&#8594;</button>
+                      <a class="document-open" href="Port-of-Los-Angeles-Benchmarking.pdf" target="_blank" rel="noreferrer">Open full PDF</a>
+                    </div>
+                  </div>
+                  <p class="document-instructions">Use the arrows, swipe, or scroll sideways to move through all 16 slides.</p>
+                  <div class="document-track" tabindex="0" aria-label="Port of Los Angeles presentation slides"></div>
+                  <noscript><p class="document-error"><a href="Port-of-Los-Angeles-Benchmarking.pdf">Open the full presentation</a></p></noscript>
+                </div>
               </div>
             </details>
 
@@ -268,7 +340,7 @@
                   <p class="case-type">Profitability &middot; Cost and margin analysis</p>
                   <h4>League Profitability &amp; Margin Analysis</h4>
                   <p class="case-brief">I organized 2024 league-level revenue and direct costs into a consistent profitability model covering 12 sports.</p>
-                  <p class="case-result">650+ league and program records standardized for comparison</p>
+                  <p class="case-result">655 league and program records standardized for comparison</p>
                   <span class="case-open">View case study</span>
                 </div>
               </summary>
@@ -297,6 +369,20 @@
                       <li>Excel</li><li>Margin analysis</li><li>Cost allocation</li><li>Data organization</li>
                     </ul>
                   </div>
+                </div>
+                <div class="document-viewer" data-pdf="Volo-Margin-Analysis-Public.pdf" data-title="Volo Sports Margin Analysis - Public Portfolio Edition">
+                  <div class="document-toolbar">
+                    <div class="document-meta"><span class="document-eyebrow">Full public case study</span><span class="document-title">Volo Sports Margin Analysis</span></div>
+                    <div class="document-actions">
+                      <button class="document-button document-previous" type="button" aria-label="Previous page">&#8592;</button>
+                      <span class="document-page-count" aria-live="polite">Loading...</span>
+                      <button class="document-button document-next" type="button" aria-label="Next page">&#8594;</button>
+                      <a class="document-open" href="Volo-Margin-Analysis-Public.pdf" target="_blank" rel="noreferrer">Open full PDF</a>
+                    </div>
+                  </div>
+                  <p class="document-instructions">Use the arrows, swipe, or scroll sideways to view the method and all 12 sport profiles.</p>
+                  <div class="document-track" tabindex="0" aria-label="Volo Sports public case study pages"></div>
+                  <noscript><p class="document-error"><a href="Volo-Margin-Analysis-Public.pdf">Open the full case study</a></p></noscript>
                 </div>
               </div>
             </details>
@@ -339,6 +425,20 @@
                   </div>
                 </div>
                 <p class="case-note"><strong>Representative sample:</strong> Figures are from a sample commercial association and do not identify a private client.</p>
+                <div class="document-viewer" data-pdf="Commercial-Reserve-Study-Sample.pdf" data-title="Commercial Reserve Study - Representative Sample">
+                  <div class="document-toolbar">
+                    <div class="document-meta"><span class="document-eyebrow">Full representative report</span><span class="document-title">Commercial Reserve Study Sample</span></div>
+                    <div class="document-actions">
+                      <button class="document-button document-previous" type="button" aria-label="Previous page">&#8592;</button>
+                      <span class="document-page-count" aria-live="polite">Loading...</span>
+                      <button class="document-button document-next" type="button" aria-label="Next page">&#8594;</button>
+                      <a class="document-open" href="Commercial-Reserve-Study-Sample.pdf" target="_blank" rel="noreferrer">Open full PDF</a>
+                    </div>
+                  </div>
+                  <p class="document-instructions">Use the arrows, swipe, or scroll sideways to move through all 52 pages.</p>
+                  <div class="document-track" tabindex="0" aria-label="Commercial reserve study sample pages"></div>
+                  <noscript><p class="document-error"><a href="Commercial-Reserve-Study-Sample.pdf">Open the full report</a></p></noscript>
+                </div>
               </div>
             </details>
           </div>
@@ -390,6 +490,20 @@
                     </ul>
                   </div>
                 </div>
+                <div class="document-viewer" data-pdf="Housing-Prices-Metro-Access.pdf" data-title="Housing Prices, Metro Access and Neighborhood Amenities">
+                  <div class="document-toolbar">
+                    <div class="document-meta"><span class="document-eyebrow">Full research paper</span><span class="document-title">Housing Prices, Metro Access &amp; Neighborhood Amenities</span></div>
+                    <div class="document-actions">
+                      <button class="document-button document-previous" type="button" aria-label="Previous page">&#8592;</button>
+                      <span class="document-page-count" aria-live="polite">Loading...</span>
+                      <button class="document-button document-next" type="button" aria-label="Next page">&#8594;</button>
+                      <a class="document-open" href="Housing-Prices-Metro-Access.pdf" target="_blank" rel="noreferrer">Open full PDF</a>
+                    </div>
+                  </div>
+                  <p class="document-instructions">Use the arrows, swipe, or scroll sideways to move through all five pages.</p>
+                  <div class="document-track" tabindex="0" aria-label="Housing econometrics paper pages"></div>
+                  <noscript><p class="document-error"><a href="Housing-Prices-Metro-Access.pdf">Open the full paper</a></p></noscript>
+                </div>
               </div>
             </details>
 
@@ -429,6 +543,20 @@
                       <li>Monetary policy</li><li>Financial regulation</li><li>Policy research</li><li>Source synthesis</li><li>PowerPoint</li>
                     </ul>
                   </div>
+                </div>
+                <div class="document-viewer" data-pdf="Stablecoins-Future-of-Finance.pdf" data-title="Stablecoins and the Future of Finance">
+                  <div class="document-toolbar">
+                    <div class="document-meta"><span class="document-eyebrow">Full presentation</span><span class="document-title">Stablecoins &amp; the Future of Finance</span></div>
+                    <div class="document-actions">
+                      <button class="document-button document-previous" type="button" aria-label="Previous slide">&#8592;</button>
+                      <span class="document-page-count" aria-live="polite">Loading...</span>
+                      <button class="document-button document-next" type="button" aria-label="Next slide">&#8594;</button>
+                      <a class="document-open" href="Stablecoins-Future-of-Finance.pdf" target="_blank" rel="noreferrer">Open full PDF</a>
+                    </div>
+                  </div>
+                  <p class="document-instructions">Use the arrows, swipe, or scroll sideways to move through all 29 slides.</p>
+                  <div class="document-track" tabindex="0" aria-label="Stablecoins presentation slides"></div>
+                  <noscript><p class="document-error"><a href="Stablecoins-Future-of-Finance.pdf">Open the full presentation</a></p></noscript>
                 </div>
               </div>
             </details>
@@ -562,5 +690,156 @@
         <p>&copy; 2026 Beck Peterson</p>
       </footer>
     </main>
+
+    <script type="module">
+      const pdfModuleUrl = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.min.mjs";
+      const pdfWorkerUrl = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs";
+      const viewers = [...document.querySelectorAll(".document-viewer")];
+      let pdfLibraryPromise;
+
+      function loadPdfLibrary() {
+        if (!pdfLibraryPromise) {
+          pdfLibraryPromise = import(pdfModuleUrl).then((library) => {
+            library.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+            return library;
+          });
+        }
+        return pdfLibraryPromise;
+      }
+
+      async function initializeViewer(viewer) {
+        if (viewer.dataset.initialized === "true") return;
+        viewer.dataset.initialized = "true";
+
+        const track = viewer.querySelector(".document-track");
+        const counter = viewer.querySelector(".document-page-count");
+        const previous = viewer.querySelector(".document-previous");
+        const next = viewer.querySelector(".document-next");
+        const pdfUrl = viewer.dataset.pdf;
+        let currentPage = 1;
+
+        try {
+          const pdfjs = await loadPdfLibrary();
+          const pdf = await pdfjs.getDocument({ url: pdfUrl }).promise;
+          const pageElements = [];
+          const renderTasks = new Map();
+
+          for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+            const pageElement = document.createElement("section");
+            pageElement.className = "document-page";
+            pageElement.dataset.page = String(pageNumber);
+            pageElement.dataset.label = `Page ${pageNumber} of ${pdf.numPages}`;
+            pageElement.setAttribute("aria-label", `Page ${pageNumber} of ${pdf.numPages}`);
+            const status = document.createElement("span");
+            status.className = "document-page-status";
+            status.textContent = `Page ${pageNumber}`;
+            pageElement.append(status);
+            track.append(pageElement);
+            pageElements.push(pageElement);
+          }
+
+          function updateControls(pageNumber) {
+            currentPage = Math.max(1, Math.min(pdf.numPages, pageNumber));
+            counter.textContent = `Page ${currentPage} / ${pdf.numPages}`;
+            previous.disabled = currentPage === 1;
+            next.disabled = currentPage === pdf.numPages;
+          }
+
+          async function renderPage(pageNumber) {
+            if (pageNumber < 1 || pageNumber > pdf.numPages) return;
+            const pageElement = pageElements[pageNumber - 1];
+            if (pageElement.dataset.rendered === "true") return;
+            if (renderTasks.has(pageNumber)) return renderTasks.get(pageNumber);
+
+            const task = (async () => {
+              const page = await pdf.getPage(pageNumber);
+              const baseViewport = page.getViewport({ scale: 1 });
+              const availableWidth = Math.max(260, track.clientWidth - 64);
+              const availableHeight = Math.max(280, Math.min(window.innerHeight * .68, 680));
+              const cssScale = Math.min(availableWidth / baseViewport.width, availableHeight / baseViewport.height);
+              const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+              const viewport = page.getViewport({ scale: cssScale * outputScale });
+              const canvas = document.createElement("canvas");
+              const context = canvas.getContext("2d", { alpha: false });
+              canvas.width = Math.floor(viewport.width);
+              canvas.height = Math.floor(viewport.height);
+              canvas.style.width = `${Math.floor(baseViewport.width * cssScale)}px`;
+              canvas.style.height = `${Math.floor(baseViewport.height * cssScale)}px`;
+              canvas.setAttribute("role", "img");
+              canvas.setAttribute("aria-label", `${viewer.dataset.title}, page ${pageNumber} of ${pdf.numPages}`);
+              await page.render({ canvasContext: context, viewport }).promise;
+              pageElement.replaceChildren(canvas);
+              pageElement.dataset.rendered = "true";
+            })();
+
+            renderTasks.set(pageNumber, task);
+            try {
+              await task;
+            } finally {
+              renderTasks.delete(pageNumber);
+            }
+          }
+
+          function goToPage(pageNumber) {
+            const target = Math.max(1, Math.min(pdf.numPages, pageNumber));
+            track.scrollTo({ left: (target - 1) * track.clientWidth, behavior: "smooth" });
+            updateControls(target);
+            renderPage(target);
+            renderPage(target - 1);
+            renderPage(target + 1);
+          }
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) renderPage(Number(entry.target.dataset.page));
+            });
+          }, { root: track, rootMargin: "0px 100% 0px 100%", threshold: .01 });
+          pageElements.forEach((pageElement) => observer.observe(pageElement));
+
+          let scrollFrame;
+          track.addEventListener("scroll", () => {
+            cancelAnimationFrame(scrollFrame);
+            scrollFrame = requestAnimationFrame(() => {
+              const pageNumber = Math.round(track.scrollLeft / Math.max(track.clientWidth, 1)) + 1;
+              updateControls(pageNumber);
+              renderPage(pageNumber);
+              renderPage(pageNumber - 1);
+              renderPage(pageNumber + 1);
+            });
+          }, { passive: true });
+
+          previous.addEventListener("click", () => goToPage(currentPage - 1));
+          next.addEventListener("click", () => goToPage(currentPage + 1));
+          track.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              goToPage(currentPage - 1);
+            }
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
+              goToPage(currentPage + 1);
+            }
+          });
+
+          updateControls(1);
+          renderPage(1);
+          renderPage(2);
+        } catch (error) {
+          counter.textContent = "PDF available";
+          previous.disabled = true;
+          next.disabled = true;
+          track.innerHTML = `<div class="document-error">The inline viewer could not load. <a href="${pdfUrl}" target="_blank" rel="noreferrer">Open the full PDF instead.</a></div>`;
+        }
+      }
+
+      viewers.forEach((viewer) => {
+        const caseStudy = viewer.closest("details");
+        if (!caseStudy) return;
+        caseStudy.addEventListener("toggle", () => {
+          if (caseStudy.open) requestAnimationFrame(() => initializeViewer(viewer));
+        });
+        if (caseStudy.open) initializeViewer(viewer);
+      });
+    </script>
   </body>
 </html>
