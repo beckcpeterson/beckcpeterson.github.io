@@ -4,12 +4,88 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Beck Peterson | Finance &amp; Quantitative Analysis</title>
-    <meta name="description" content="Finance and analytics portfolio of Beck Peterson, featuring work in forecasting, treasury, financial modeling, and applied econometrics.">
+    <meta name="description" content="Finance and analytics portfolio of Beck Peterson, featuring professional and academic case studies in forecasting, treasury, financial modeling, econometrics, and monetary policy.">
     <meta name="keywords" content="Beck Peterson, finance analyst, quantitative analysis, financial modeling, budget forecasting, economics">
     <meta name="author" content="Beck Peterson">
     <link rel="canonical" href="https://beckcpeterson.github.io/">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Portfolio case-study styles are kept here so this single file contains the full update. -->
+    <style>
+      .portfolio-category { max-width: 1440px; margin: 0 auto; }
+      .portfolio-category + .portfolio-category { margin-top: clamp(5rem, 10vw, 9rem); }
+      .category-heading {
+        display: grid; grid-template-columns: 90px minmax(0, 1fr) minmax(280px, .55fr);
+        gap: clamp(1.25rem, 4vw, 4rem); align-items: end;
+        margin-bottom: 2rem; padding-bottom: 1.4rem; border-bottom: 1px solid #b8b8ac;
+      }
+      .category-number { color: #3f6d53; font-family: Georgia, "Times New Roman", serif; font-size: 1.1rem; }
+      .category-heading h3 {
+        margin: 0; font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2.1rem, 4.5vw, 4.5rem); font-weight: 400; letter-spacing: -.05em; line-height: 1;
+      }
+      .category-heading p { margin: 0; color: #5e686c; font-size: .95rem; line-height: 1.7; }
+      .case-study-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+      .case-study-grid-professional .case-study-card:first-child { grid-column: 1 / -1; }
+      .case-study-card { border: 1px solid #b8b8ac; background: rgba(255,255,255,.22); }
+      .case-study-card[open] { background: #fbf9f3; }
+      .case-study-card summary { list-style: none; cursor: pointer; }
+      .case-study-card summary::-webkit-details-marker { display: none; }
+      .case-study-card summary:focus-visible { outline: 3px solid #5e8b71; outline-offset: 3px; }
+      .case-card { min-height: 390px; display: flex; flex-direction: column; padding: clamp(1.5rem, 3.2vw, 3rem); }
+      .case-study-grid-professional .case-study-card:first-child .case-card { min-height: 360px; }
+      .case-card-top { display: flex; align-items: center; justify-content: space-between; color: #3f6d53; }
+      .case-index { font-size: .72rem; font-weight: 800; letter-spacing: .14em; }
+      .case-card-top .icon { font-size: 25px; }
+      .case-type {
+        margin: clamp(3.2rem, 7vw, 5.2rem) 0 .9rem; color: #62716a;
+        font-size: .68rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+      }
+      .case-card h4 {
+        max-width: 760px; margin: 0; font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.8rem, 3.2vw, 3.15rem); font-weight: 400; letter-spacing: -.045em; line-height: 1.04;
+      }
+      .case-brief { max-width: 770px; margin: 1.25rem 0; color: #4d5b61; font-size: .95rem; line-height: 1.7; }
+      .case-result { margin: auto 0 1.35rem; color: #234c36; font-size: .86rem; font-weight: 800; line-height: 1.5; }
+      .case-open {
+        display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        padding-top: 1rem; border-top: 1px solid #c7c8bd; color: #274b37;
+        font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+      }
+      .case-open::after { content: "+"; font-family: Georgia, "Times New Roman", serif; font-size: 1.6rem; font-weight: 400; }
+      .case-study-card[open] .case-open::after { content: "−"; }
+      .case-body { padding: 0 clamp(1.5rem, 3.2vw, 3rem) clamp(1.8rem, 3.2vw, 3rem); }
+      .case-body-grid {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0; border-top: 1px solid #c7c8bd; border-left: 1px solid #c7c8bd;
+      }
+      .case-section { padding: clamp(1.25rem, 2.4vw, 2rem); border-right: 1px solid #c7c8bd; border-bottom: 1px solid #c7c8bd; }
+      .case-section h5 {
+        margin: 0 0 .75rem; color: #3e6b52; font-size: .67rem;
+        font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+      }
+      .case-section p { margin: 0; color: #4d5b61; font-size: .9rem; line-height: 1.72; }
+      .case-section ul { display: grid; gap: .55rem; margin: 0; padding: 0; color: #4d5b61; font-size: .88rem; line-height: 1.62; list-style: none; }
+      .case-section li { position: relative; padding-left: 1rem; }
+      .case-section li::before { position: absolute; left: 0; content: "↗"; color: #3e6b52; }
+      .case-tools { margin-top: 1rem; }
+      .case-note {
+        margin: 1rem 0 0; padding: .9rem 1rem; border-left: 3px solid #5e8b71;
+        background: #eef2e9; color: #41534a; font-size: .78rem; line-height: 1.6;
+      }
+      @media (max-width: 900px) {
+        .category-heading { grid-template-columns: 60px 1fr; }
+        .category-heading p { grid-column: 2; }
+        .case-study-grid { grid-template-columns: 1fr; }
+        .case-study-grid-professional .case-study-card:first-child { grid-column: auto; }
+      }
+      @media (max-width: 640px) {
+        .category-heading { grid-template-columns: 38px 1fr; }
+        .case-card { min-height: auto; }
+        .case-body-grid { grid-template-columns: 1fr; }
+      }
+    </style>
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://beckcpeterson.github.io/">
@@ -40,7 +116,7 @@
     </svg>
 
     <main id="main-content" class="overflow-hidden">
-      <a class="skip-link" href="#selected-work">Skip to selected work</a>
+      <a class="skip-link" href="#selected-work">Skip to portfolio</a>
 
       <!-- HERO: Edit your main headline and introduction here. -->
       <section class="hero-shell">
@@ -49,7 +125,7 @@
         <nav class="site-nav" aria-label="Primary navigation">
           <a class="wordmark" href="#main-content" aria-label="Beck Peterson, home">BP<span>.</span></a>
           <div class="nav-links">
-            <a href="#selected-work">Work</a>
+            <a href="#selected-work">Portfolio</a>
             <a href="#experience">Experience</a>
             <a href="#about">About</a>
           </div>
@@ -69,7 +145,7 @@
             </p>
             <div class="hero-actions">
               <a class="button button-primary" href="#selected-work">
-                Explore my work
+                Explore my portfolio
                 <svg class="icon" aria-hidden="true"><use href="#icon-arrow-down"/></svg>
               </a>
               <a class="button button-secondary" href="Beck-Peterson-Resume.pdf" download>
@@ -124,63 +200,239 @@
         </div>
       </section>
 
-      <!-- SELECTED WORK: Copy a project card to add another project. -->
+      <!-- PORTFOLIO: Open a case study below to edit its detailed content. -->
       <section id="selected-work" class="section section-light">
         <div class="section-heading">
           <div>
-            <p class="eyebrow eyebrow-dark">Selected work</p>
-            <h2>Analysis grounded in real decisions.</h2>
+            <p class="eyebrow eyebrow-dark">Portfolio</p>
+            <h2>From a complex question to a clear financial story.</h2>
           </div>
           <p>
-            A selection of finance and analytics work spanning forecasting,
-            treasury, profitability, and econometrics.
+            Professional and academic case studies covering financial modeling,
+            forecasting, profitability, econometrics, and monetary policy.
           </p>
         </div>
 
-        <div class="project-grid">
-          <article class="project-card">
-            <div class="project-card-top"><span>01</span><svg class="icon" aria-hidden="true"><use href="#icon-building"/></svg></div>
-            <p class="project-type">Treasury analysis</p>
-            <h3>ACTA capital planning &amp; cash-flow outlook</h3>
-            <p class="project-description">Translated project-level assumptions into a portfolio-level view of funding, capital expenditures, and future liquidity for a major public infrastructure program.</p>
-            <p class="project-result">$129M projected cash-position gap identified</p>
-            <ul class="tag-list" aria-label="ACTA project tools">
-              <li>Excel</li><li>3-statement modeling</li><li>Cash-flow forecasting</li><li>Debt analysis</li>
-            </ul>
-          </article>
+        <div class="portfolio-category">
+          <div class="category-heading">
+            <span class="category-number">01</span>
+            <h3>Professional Projects</h3>
+            <p>Internship work transformed into focused case studies while protecting private company information.</p>
+          </div>
 
-          <article class="project-card">
-            <div class="project-card-top"><span>02</span><svg class="icon" aria-hidden="true"><use href="#icon-line-chart"/></svg></div>
-            <p class="project-type">Budget forecasting</p>
-            <h3>Utility-rate research at portfolio scale</h3>
-            <p class="project-description">Research and structure utility-rate information across hundreds of providers to support recurring client budget forecasts and rate audits.</p>
-            <p class="project-result">1,000+ monthly assignments supported</p>
-            <ul class="tag-list" aria-label="Utility research project tools">
-              <li>Excel</li><li>Rate analysis</li><li>Data validation</li><li>Client communication</li>
-            </ul>
-          </article>
+          <div class="case-study-grid case-study-grid-professional">
+            <details class="case-study-card">
+              <summary>
+                <div class="case-card">
+                  <div class="case-card-top"><span class="case-index">01 / PORT OF LOS ANGELES</span><svg class="icon" aria-hidden="true"><use href="#icon-building"/></svg></div>
+                  <p class="case-type">Financial benchmarking &middot; Debt and treasury</p>
+                  <h4>Port Financial Strength &amp; ACTA Obligations</h4>
+                  <p class="case-brief">I compared the financial and operating positions of the Ports of Los Angeles and Long Beach to evaluate their capacity to meet shared Alameda Corridor obligations.</p>
+                  <p class="case-result">Six fiscal years analyzed &middot; Debt profiles projected through 2044 and 2054 &middot; Executive presentation delivered</p>
+                  <span class="case-open">View case study</span>
+                </div>
+              </summary>
+              <div class="case-body">
+                <div class="case-body-grid">
+                  <div class="case-section">
+                    <h5>The question</h5>
+                    <p>How did the two ports compare financially and operationally, and which was better positioned to absorb potential shortfall payments tied to the Alameda Corridor Transportation Authority?</p>
+                  </div>
+                  <div class="case-section">
+                    <h5>My contribution</h5>
+                    <ul>
+                      <li>Updated three income-statement models, ratio analysis, minimum annual guarantees, and debt-service summaries.</li>
+                      <li>Reviewed senior bond official statements and created cash-flow forecasts and capital-improvement projections.</li>
+                      <li>Connected port operations, liquidity, capital spending, debt schedules, and ACTA obligations in one comparative analysis.</li>
+                    </ul>
+                  </div>
+                  <div class="case-section">
+                    <h5>Analysis &amp; finding</h5>
+                    <p>I compared cargo volumes, revenue growth, operating margins, debt-service coverage, days cash on hand, capital plans, and future debt requirements. The analysis indicated that Los Angeles was better positioned to absorb shared ACTA obligations because of its stronger coverage, liquidity, and shorter debt schedule.</p>
+                  </div>
+                  <div class="case-section">
+                    <h5>Deliverable &amp; value</h5>
+                    <p>I converted the work into a 16-slide executive presentation and presented it to leaders across Finance, Accounting, and Debt &amp; Treasury, including the CFO and other senior personnel.</p>
+                    <ul class="tag-list case-tools" aria-label="Port project skills">
+                      <li>Excel</li><li>Financial modeling</li><li>Forecasting</li><li>Debt analysis</li><li>PowerPoint</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </details>
 
-          <article class="project-card">
-            <div class="project-card-top"><span>03</span><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"/></svg></div>
-            <p class="project-type">Profitability analysis</p>
-            <h3>Sports league margin performance</h3>
-            <p class="project-description">Organized revenue and operating-cost data across a broad sports portfolio to make league-level profitability trends easier to evaluate.</p>
-            <p class="project-result">$4.35M in combined revenue and costs analyzed</p>
-            <ul class="tag-list" aria-label="Sports analysis project tools">
-              <li>Excel</li><li>Margin analysis</li><li>Portfolio reporting</li><li>Marketing analytics</li>
-            </ul>
-          </article>
+            <details class="case-study-card">
+              <summary>
+                <div class="case-card">
+                  <div class="case-card-top"><span class="case-index">02 / VOLO SPORTS</span><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"/></svg></div>
+                  <p class="case-type">Profitability &middot; Cost and margin analysis</p>
+                  <h4>League Profitability &amp; Margin Analysis</h4>
+                  <p class="case-brief">I organized 2024 league-level revenue and direct costs into a consistent profitability model covering 12 sports.</p>
+                  <p class="case-result">650+ league and program records standardized for comparison</p>
+                  <span class="case-open">View case study</span>
+                </div>
+              </summary>
+              <div class="case-body">
+                <div class="case-body-grid">
+                  <div class="case-section">
+                    <h5>The question</h5>
+                    <p>How could league-level revenue and operating costs be structured consistently so managers could compare margins and identify underperforming programs?</p>
+                  </div>
+                  <div class="case-section">
+                    <h5>My contribution</h5>
+                    <ul>
+                      <li>Organized records by sport and accounting code.</li>
+                      <li>Consolidated revenue with staffing, permits, apparel, prizes, and equipment costs.</li>
+                      <li>Used repeatable Excel formulas to calculate profit and margin for each entry and sport total.</li>
+                    </ul>
+                  </div>
+                  <div class="case-section">
+                    <h5>Analysis &amp; value</h5>
+                    <p>The model made profitability differences visible across leagues and sports and created a consistent basis for identifying low-margin programs and the operating costs affecting performance.</p>
+                  </div>
+                  <div class="case-section">
+                    <h5>Public presentation</h5>
+                    <p>This case study explains the analytical structure and business value without publishing proprietary financial totals, accounting codes, internal links, or access information.</p>
+                    <ul class="tag-list case-tools" aria-label="Volo project skills">
+                      <li>Excel</li><li>Margin analysis</li><li>Cost allocation</li><li>Data organization</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </details>
 
-          <article class="project-card">
-            <div class="project-card-top"><span>04</span><svg class="icon" aria-hidden="true"><use href="#icon-trending"/></svg></div>
-            <p class="project-type">Academic econometrics</p>
-            <h3>Transit proximity &amp; real-estate values</h3>
-            <p class="project-description">Evaluated the relationship between train-station distance and Taiwanese real-estate prices using regression-based quantitative analysis.</p>
-            <p class="project-result">From raw observations to an interpretable economic story</p>
-            <ul class="tag-list" aria-label="Econometrics project tools">
-              <li>RStudio</li><li>Stata</li><li>Regression analysis</li><li>Data visualization</li>
-            </ul>
-          </article>
+            <details class="case-study-card">
+              <summary>
+                <div class="case-card">
+                  <div class="case-card-top"><span class="case-index">03 / RESERVE STUDIES</span><svg class="icon" aria-hidden="true"><use href="#icon-line-chart"/></svg></div>
+                  <p class="case-type">Representative sample &middot; Long-range planning</p>
+                  <h4>30-Year Commercial Reserve Planning</h4>
+                  <p class="case-brief">I translated property-condition and lifecycle information into long-range funding schedules for future repairs and replacements.</p>
+                  <p class="case-result">Component inventory &middot; Four funding scenarios &middot; 30-year forecast</p>
+                  <span class="case-open">View case study</span>
+                </div>
+              </summary>
+              <div class="case-body">
+                <div class="case-body-grid">
+                  <div class="case-section">
+                    <h5>The question</h5>
+                    <p>How much should a commercial association reserve today to fund major future replacements while reducing the risk of unexpected special assessments?</p>
+                  </div>
+                  <div class="case-section">
+                    <h5>My process</h5>
+                    <ul>
+                      <li>Documented major property components and their condition.</li>
+                      <li>Estimated useful life, remaining life, and replacement costs.</li>
+                      <li>Organized projected expenditures and compared four long-range funding approaches.</li>
+                    </ul>
+                  </div>
+                  <div class="case-section">
+                    <h5>Sample finding</h5>
+                    <p>In the representative sample, the analysis identified an $80,241 difference between actual and ideal reserves. The recommended plan increased monthly reserve contributions from $1,880 to approximately $2,641 and covered projected expenses without a special assessment.</p>
+                  </div>
+                  <div class="case-section">
+                    <h5>Deliverable &amp; value</h5>
+                    <p>The completed report connected physical asset conditions to an actionable financial plan, providing advance warning of major expenditures and a more realistic contribution schedule.</p>
+                    <ul class="tag-list case-tools" aria-label="Reserve planning skills">
+                      <li>Forecasting</li><li>Lifecycle analysis</li><li>Cost planning</li><li>Technical reporting</li>
+                    </ul>
+                  </div>
+                </div>
+                <p class="case-note"><strong>Representative sample:</strong> Figures are from a sample commercial association and do not identify a private client.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="portfolio-category">
+          <div class="category-heading">
+            <span class="category-number">02</span>
+            <h3>Academic Projects</h3>
+            <p>Applied research showing how I structure a question, choose a method, evaluate evidence, and communicate the result.</p>
+          </div>
+
+          <div class="case-study-grid">
+            <details class="case-study-card">
+              <summary>
+                <div class="case-card">
+                  <div class="case-card-top"><span class="case-index">01 / ECONOMETRICS</span><svg class="icon" aria-hidden="true"><use href="#icon-trending"/></svg></div>
+                  <p class="case-type">Applied econometrics &middot; Housing markets</p>
+                  <h4>Housing Prices, Metro Access &amp; Neighborhood Amenities</h4>
+                  <p class="case-brief">I used multivariate regression to estimate how property age, transit access, and nearby convenience stores were associated with housing prices in New Taipei City.</p>
+                  <p class="case-result">414 observations &middot; R&sup2; of 59.5% &middot; Explicit treatment of model limitations</p>
+                  <span class="case-open">View case study</span>
+                </div>
+              </summary>
+              <div class="case-body">
+                <div class="case-body-grid">
+                  <div class="case-section">
+                    <h5>The question</h5>
+                    <p>How were unit-area housing prices related to house age, distance from the nearest metro station, and the number of nearby convenience stores?</p>
+                  </div>
+                  <div class="case-section">
+                    <h5>My approach</h5>
+                    <ul>
+                      <li>Analyzed 414 housing transactions from 2012 and 2013 in R.</li>
+                      <li>Log-transformed metro distance to improve linearity.</li>
+                      <li>Added a quadratic age term after identifying a nonlinear relationship.</li>
+                      <li>Tested and rejected a more complex categorical treatment of convenience stores when it did not improve fit.</li>
+                    </ul>
+                  </div>
+                  <div class="case-section">
+                    <h5>Findings</h5>
+                    <p>The final OLS model explained approximately 59.5% of price variation. One additional nearby store was associated with an approximately 0.77-unit increase in price, while a 1% increase in metro distance was associated with an approximately 0.067-unit decrease.</p>
+                  </div>
+                  <div class="case-section">
+                    <h5>Interpretation</h5>
+                    <p>I treated the findings as associations rather than causal effects and discussed omitted variables including property size, renovation status, building quality, school quality, safety, and exact location.</p>
+                    <ul class="tag-list case-tools" aria-label="Housing project skills">
+                      <li>R</li><li>OLS regression</li><li>Feature transformation</li><li>Data visualization</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="case-study-card">
+              <summary>
+                <div class="case-card">
+                  <div class="case-card-top"><span class="case-index">02 / INTERNATIONAL FINANCE</span><svg class="icon" aria-hidden="true"><use href="#icon-line-chart"/></svg></div>
+                  <p class="case-type">Monetary policy &middot; Digital assets</p>
+                  <h4>Stablecoins, Monetary Policy &amp; the Future of Finance</h4>
+                  <p class="case-brief">I examined how stablecoins could affect payments, banking, Treasury markets, short-term interest rates, regulation, and the international reach of the dollar.</p>
+                  <p class="case-result">29-slide research presentation &middot; Global policy and market perspective</p>
+                  <span class="case-open">View case study</span>
+                </div>
+              </summary>
+              <div class="case-body">
+                <div class="case-body-grid">
+                  <div class="case-section">
+                    <h5>The question</h5>
+                    <p>Could stablecoins become a mainstream financial tool, and how might their growth affect banks, money markets, monetary policy, regulation, and international finance?</p>
+                  </div>
+                  <div class="case-section">
+                    <h5>My research</h5>
+                    <ul>
+                      <li>Compared fiat-backed, commodity-backed, crypto-collateralized, and algorithmic models.</li>
+                      <li>Evaluated payment efficiency, financial access, reserve quality, de-pegging, security, and contagion risks.</li>
+                      <li>Compared adoption and regulatory approaches across the United States, Europe, China, and the UAE.</li>
+                    </ul>
+                  </div>
+                  <div class="case-section">
+                    <h5>Economic mechanism</h5>
+                    <p>I traced how inflows can cause issuers to purchase Treasury bills and how large redemptions can force asset sales. Those transactions can influence short-term yields, liquidity, and funding costs, particularly when redemptions are concentrated among a small number of large participants.</p>
+                  </div>
+                  <div class="case-section">
+                    <h5>Conclusion</h5>
+                    <p>I concluded that properly regulated, fully backed stablecoins are more likely to complement traditional banks than replace them. They may improve payment efficiency and extend dollar usage, while reserve transparency, liquidity, redemption rights, and concentration remain key policy concerns.</p>
+                    <ul class="tag-list case-tools" aria-label="Stablecoin project skills">
+                      <li>Monetary policy</li><li>Financial regulation</li><li>Policy research</li><li>Source synthesis</li><li>PowerPoint</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
         </div>
       </section>
 
@@ -245,7 +497,7 @@
               <h3>Finance &amp; Corporate Partnership Intern</h3>
               <p class="timeline-summary">Analyzed league-level financial performance while supporting partnership and audience-growth initiatives.</p>
               <ul>
-                <li>Tracked $2.74M in revenue and $1.61M in operating costs across 655 leagues and events spanning 12 sports.</li>
+                <li>Tracked league-level revenue and operating costs across more than 650 leagues and events spanning 12 sports.</li>
                 <li>Evaluated margin and profitability trends and supported social content that generated more than one million views.</li>
               </ul>
             </div>
